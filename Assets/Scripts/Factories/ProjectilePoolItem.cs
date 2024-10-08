@@ -9,9 +9,15 @@ namespace Factories
     {
         private IObjectPool<ProjectilePoolItem> _objectPool;
         private float _damage;
+        private bool _isInit;
 
         public void Init(ServiceLocator serviceLocator, IObjectPool<ProjectilePoolItem> objectPool, float velocity, float damage)
         {
+            if (_isInit)
+                return;
+            
+            _isInit = true;
+            
             _objectPool = objectPool;
             _damage = damage;
 

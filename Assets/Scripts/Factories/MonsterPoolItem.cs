@@ -17,16 +17,19 @@ namespace Factories
 
         public void Init(ServiceLocator serviceLocator)
         {
-            if (_isInit)
-                return;
-
-            _isInit = true;
-            
             var data = serviceLocator.GetService<GameSettingsData>();
             
+            if (_isInit)
+            {
+                _objectHp?.SetHp(data.MonsterMaxHp);
+                return;
+            }
+
+            _isInit = true;
+
             var movement = new ObjectMovement(transform, data.MonsterVelocity);
             _objectHp = new ObjectHp(data.MonsterMaxHp);
-            
+
             var gameUpdater = serviceLocator.GetService<GameUpdater>();
             gameUpdater.AddListener(movement);
             

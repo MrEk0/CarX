@@ -14,6 +14,11 @@ namespace Common
             _hp = maxHp;
         }
 
+        public void SetHp(float maxHp)
+        {
+            _hp = maxHp;
+        }
+
         public void TakeDamage(float damageValue)
         {
             _hp -= damageValue;
